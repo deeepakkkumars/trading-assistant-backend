@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: trading-assistant-backend
+    runtime: python
+    plan: free
+    buildCommand: python -m py_compile backend_server/server.py
+    startCommand: python backend_server/server.py
+    healthCheckPath: /health
+    envVars:
+      - key: OI_PROVIDER_MODE
+        value: dhan
+      - key: DHAN_CLIENT_ID
+        sync: false
+      - key: DHAN_ACCESS_TOKEN
+        sync: false
+      - key: DHAN_NIFTY_SECURITY_ID
+        value: "13"
+      - key: DHAN_SENSEX_SECURITY_ID
+        sync: false
+      - key: DHAN_INDEX_SEGMENT
+        value: IDX_I
